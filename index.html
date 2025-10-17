@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cube Studio 2D - Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="app-container">
+
+        <div id="hub-screen" class="screen">
+            <h1>Hub</h1>
+            <div class="project-management">
+                <button id="new-project-btn">NEW PROJECT +</button>
+                <button>IMPORT PROJECT ⤵</button>
+
+                <h2>YOUR PROJECTS</h2>
+                <div class="project-list">
+                    <div class="project-item">
+                        <span>Cube Dash</span>
+                        <div class="actions">
+                            <button class="action-btn play">PLAY</button>
+                            <button class="action-btn edit" onclick="openEditor()">EDIT</button>
+                            <button class="action-btn delete">DELETE</button>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+
+            <div id="open-editor-dialog" class="dialog-box">
+                <h2>OPEN EDITOR?</h2>
+                <button onclick="enterEditor()">YES</button>
+                <button onclick="closeDialog()">NO</button>
+            </div>
+        </div>
+
+        <div id="editor-screen" class="screen">
+            <div class="editor-header">
+                <button onclick="returnToHub()">VOLTAR AO HUB</button>
+                <h2>CUBE DASH / CUBEFISH</h2>
+                <div class="top-actions">
+                    <button class="action-btn">SAVE</button>
+                    <button class="action-btn">PUBLIC</button>
+                    <button class="action-btn">MOVE/ROTATE</button>
+                </div>
+            </div>
+            
+            <div class="editor-body">
+
+                <div class="sidebar left-panel">
+                    <h3>MODELS & PLUGINS</h3>
+                    <div class="place-btn">PLACE THIS IN SCREEN</div>
+                    </div>
+                
+                <div class="main-area">
+                    <div class="game-preview">
+                        <div class="play-icon">▶</div> 
+                    </div>
+                    <div class="output-panel">
+                        <h4>OUTPUT</h4>
+                        <p>> Console pronto...</p>
+                    </div>
+                </div>
+
+                <div class="sidebar right-panel">
+                    
+                    <div class="workspace-panel">
+                        <div class="workspace-header">
+                            <h4>WORKSPACE</h4>
+                            <button id="add-element-btn" class="add-btn" title="Adicionar Elemento" onclick="toggleAddMenu()">+</button>
+                            
+                            <div id="add-menu" class="add-menu-dropdown">
+                                <div class="menu-item" onclick="addElement('SPRITE')">SPRITE</div>
+                                <div class="menu-item" onclick="addElement('SCREENUI')">SCREENUI (StarterUI)</div>
+                                <div class="menu-item" onclick="addElement('SCRIPT.lua')">SCRIPT.lua</div>
+                                <div class="menu-item" onclick="addElement('FOLDER')">FOLDER</div>
+                                <div class="menu-item" onclick="addElement('TEXTUI')">TEXTUI</div>
+                                <div class="menu-item" onclick="addElement('TOUCHUI')">TOUCHUI</div>
+                                <div class="menu-item" onclick="addElement('IMAGEUI')">IMAGEUI</div>
+                            </div>
+                            
+                        </div>
+                        
+                        <ul id="hierarchy-tree" class="hierarchy">
+                            <li class="item-folder">🌍 WORLD</li>
+                            <li class="item-folder">💡 LIGHTING</li>
+                            <li class="item-folder">📦 REPLICATED STORAGE</li>
+                            
+                            <li class="item-ui">
+                                <span class="element-name">UI</span>
+                                <ul>
+                                    <li class="item-folder">
+                                        <span class="element-name">SPRITEUI</span>
+                                        <ul>
+                                            <li class="item-script">SCRIPT</li>
+                                        </ul>
+                                    </li>
+                                    <li class="item-script">LUA</li>
+                                    <li class="item-folder">
+                                        <span class="element-name">SPRITEUI</span>
+                                        <ul>
+                                            <li class="item-script">SCRIPT +</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="plugins-panel">
+                        <h4>PLUGINS</h4>
+                        <div class="plugin-item">CUBE ANIMATOR</div>
+                    </div>
+
+                </div> </div> </div>
+
+    </div>
+
+    <script src="script.js"></script> 
+</body>
+</html>
