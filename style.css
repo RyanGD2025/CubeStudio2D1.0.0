@@ -1,0 +1,273 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #333; /* Fundo escuro */
+    color: #fff; /* Texto claro */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+#app-container {
+    width: 90%;
+    max-width: 1200px; /* Mais largura para o Editor */
+    margin-top: 50px;
+    flex-grow: 1;
+}
+
+.screen {
+    display: none;
+    background-color: #444;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    height: 80vh; /* Altura para o Editor */
+}
+
+.screen.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Estilos do Hub (Específicos) --- */
+#hub-screen {
+    height: auto;
+    max-width: 500px;
+    margin: 0 auto;
+}
+#hub-screen h1 {
+    text-align: center;
+    color: #ffcc00; /* Cor amarela para destaque */
+}
+
+.project-management button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#new-project-btn {
+    background-color: #28a745; /* Verde para Novo Projeto */
+}
+
+.project-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #555;
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 4px;
+}
+
+.action-btn {
+    padding: 5px 10px;
+    margin-left: 5px;
+    font-size: 0.8em;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.action-btn.play { background-color: #007bff; color: white; }
+.action-btn.edit { background-color: #ffc107; color: #333; }
+.action-btn.delete { background-color: #dc3545; color: white; }
+
+/* --- Caixa de Diálogo (Open Editor) --- */
+.dialog-box {
+    background-color: #333;
+    border: 2px solid #ffcc00;
+    padding: 20px;
+    position: fixed; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    text-align: center;
+    z-index: 1000;
+    display: none; 
+}
+
+.dialog-box button {
+    margin: 5px;
+    width: 80px;
+}
+
+/* --- Estilos do Editor Geral --- */
+.editor-header {
+    background-color: #222;
+    padding: 10px;
+    border-bottom: 2px solid #ffcc00;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.editor-header h2 {
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.editor-body {
+    display: flex;
+    flex-direction: row; 
+    flex-grow: 1; 
+    padding-top: 10px;
+}
+
+.sidebar {
+    width: 280px; /* Largura dos painéis laterais */
+    background-color: #383838;
+    padding: 5px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+.left-panel { margin-right: 10px; }
+.right-panel { margin-left: 10px; }
+
+.main-area {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Painel Esquerdo (MODELS & PLUGINS) --- */
+.place-btn {
+    background-color: #6c757d;
+    text-align: center;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* --- Painel Direito (WORKSPACE) --- */
+.workspace-panel, .plugins-panel {
+    border: 1px solid #555;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.workspace-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #555;
+    margin-bottom: 5px;
+    position: relative; /* Para o menu dropdown */
+}
+
+.add-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 3px 8px;
+    font-weight: bold;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+/* Menu flutuante do botão '+' */
+.add-menu-dropdown {
+    display: none; /* Oculto por padrão */
+    position: absolute;
+    top: 100%; /* Abaixo do header */
+    right: 0;
+    background-color: #2a2a2a;
+    border: 1px solid #ffcc00; /* Borda de destaque */
+    border-radius: 4px;
+    z-index: 2000;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.menu-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.menu-item:hover {
+    background-color: #555;
+    color: #ffcc00;
+}
+
+/* Hierarquia de Elementos (Tree View) */
+.hierarchy {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.hierarchy li {
+    padding-left: 5px;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.hierarchy li:hover {
+    background-color: #555;
+}
+
+.hierarchy ul {
+    list-style: none;
+    padding-left: 15px; /* Recuo para sub-itens */
+}
+
+/* Estilos visuais para diferenciar tipos de itens */
+.item-folder { color: #87ceeb; } 
+.item-ui { color: #ffa07a; }      
+.item-script { color: #90ee90; }  
+.plugin-item {
+    background-color: #555;
+    padding: 8px;
+    border-radius: 3px;
+    text-align: center;
+}
+
+/* --- Estilos da Área Central --- */
+.game-preview {
+    flex-grow: 1;
+    background-color: #2a2a2a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border: 1px solid #666;
+}
+
+.play-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px; 
+    height: 60px; 
+    border: 4px solid white;
+    background-color: #007bff;
+    border-radius: 50%;
+    color: white;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+.output-panel {
+    height: 120px;
+    background-color: #1a1a1a;
+    margin-top: 10px;
+    padding: 5px;
+    overflow-y: scroll;
+    font-size: 0.8em;
+}
